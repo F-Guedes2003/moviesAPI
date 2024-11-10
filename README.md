@@ -10,5 +10,7 @@ There is where the project classes are defined, there are 2 classes:
 
 #### Generator.js
 It is an aux class to generate classes id
+
 **movieIdCounter:** stores the current movie id;
+
 **movieId():** it is the method that gives the movie id properly and increments it.
