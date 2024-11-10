@@ -17,3 +17,6 @@ It is an aux class to generate classes id
 
 ### Data
 there is where the data as the movies are stored
+
+# Project purpouse
+The following project purpouse, is to practice my skills with javascript, more specifically with Express framework with a solid and concrete project, it is valid to remind that this is my first Express project, so there should be some code smells in it, and of sure there should be many best practices that could be used to develop it. in a nutshell, this is a train project to gradually improve my express skills.
