@@ -2,10 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Movie from './models/Movie.js';
 import movies from './data/movies.js';
+import cors from 'cors';
 
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
