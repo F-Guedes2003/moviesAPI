@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Movie from './models/Movie.js';
 import movies from './data/movies.js';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
