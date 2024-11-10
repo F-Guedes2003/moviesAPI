@@ -5,20 +5,21 @@ import movies from './data/movies.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import mongoose from 'mongoose';
 
 dotenv.config();
 const app = express();
 const PORT = 3000;
 
-mongoose.connect(`mongodb+srv://fhelipped:${process.env.MONGO_KEY}@moviesapi.09ngu.mongodb.net/?retryWrites=true&w=majority&appName=moviesAPI`)
+mongoose.connect(`mongodb+srv://fhelipped:V2eAuf5JZiaUKm3I@moviesapi.09ngu.mongodb.net/?retryWrites=true&w=majority&appName=moviesAPI`)
 	.then(() => {
-		console.log('Connected to database!');
-
-		app.listen(PORT, () => {
-			console.log(`Server online running on PORT: ${PORT}`);
+		console.log('Database connected');
+		
+		app.listen(PORT, () => { 
+			console.log(`Server online and running on port ${PORT}`) 
 		})
 	})
-	.catch(error => console.error(error + 'Failed to run the server'));
+	.catch(error => console.error('failed to run the server'));
 
 app.use(cors());
 app.use(bodyParser.json());
