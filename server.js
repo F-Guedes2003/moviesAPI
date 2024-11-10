@@ -34,6 +34,18 @@ app.route('/movies')
 		if(!object.year)  return res.status(400).json({errorMessage: "There should be an year field!"});
 	})
 
+app.route('/movies/:id')
+	.get((req, res) => {
+		const movie = movies.find(movie => movie.id == req.params.id);
+		console.log(movie);
+
+		if(movie){
+			return res.status(200).json(movie);
+		} 
+
+		res.end();
+	})
+
 app.listen(PORT, () => {
 	console.log(`Server online running on PORT: ${PORT}`);
 })
