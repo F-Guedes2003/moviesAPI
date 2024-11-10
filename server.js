@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import Movie from './models/Movie.js';
-import movies from './data/movies.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -32,7 +31,8 @@ app.get('/', (req, res) => {
 })
 
 app.route('/movies')
-	.get((req, res) => {
+	.get(async (req, res) => {
+		const movies = await mongoService.find();
 		res.json(movies);
 	})
 	
@@ -54,7 +54,7 @@ app.route('/movies')
 
 app.route('/movies/:id')
 	.get((req, res) => {
-		const movie = movies.find(movie => movie.id == req.params.id);
+		const movie = mongoService.find(id);
 		console.log(movie);
 
 		if(movie){

@@ -10,6 +10,12 @@ class MongoDatabaseService {
         
         modelInstance.save();
     }
+
+    async find(id) {
+        if(id) return mongoMovie.findById(id);
+        
+        return mongoMovie.find();
+    }
 }
 
 export default MongoDatabaseService;
