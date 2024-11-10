@@ -43,7 +43,27 @@ app.route('/movies/:id')
 			return res.status(200).json(movie);
 		} 
 
-		res.end();
+		res.status(404).json({errorMessage: "movie not found"});
+	})
+
+	.put((req, res) => {
+		const id = req.params.id;
+		const object = req.body;
+
+		if(!object.name && !object.gender && !object.year) return res.status(400).json({errorMessage: "All fields must be defined on PUT operation"});
+
+		if(!object.name) return res.status(400).json({errorMessage: "Missing name"});
+
+		if(!object.gender) return res.status(400).json({errorMessage: "Missing gender"});
+
+		if(!object.year) return res.status(400).json({errorMessage: "Missing year"});
+
+		const index = movies.findIndex(e => e.id == id);
+		movies[index].name = object.name;
+		movies[index].gender = object.gender;
+		movies[index].year = object.year;
+
+		return res.status(200).json({message: "Movie succesfully updated!"});
 	})
 
 app.listen(PORT, () => {
