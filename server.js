@@ -5,12 +5,19 @@ import movies from './data/movies.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import MongoDatabaseService from './services/MongoDatabaseService.js';
+import MovieService from './services/MovieService.js';
 
 dotenv.config();
 const app = express();
 const PORT = 3000;
+const mongoService = new MongoDatabaseService
+const movieService = new MovieService(mongoService);
 
-mongoose.connect(`mongodb+srv://fhelipped:V2eAuf5JZiaUKm3I@moviesapi.09ngu.mongodb.net/?retryWrites=true&w=majority&appName=moviesAPI`)
+app.use(cors());
+app.use(bodyParser.json());
+
+mongoose.connect(`mongodb+srv://fhelipped:${process.env.MONGO_KEY}@moviesapi.09ngu.mongodb.net/?retryWrites=true&w=majority&appName=moviesAPI`)
 	.then(() => {
 		console.log('Database connected');
 		
@@ -19,9 +26,6 @@ mongoose.connect(`mongodb+srv://fhelipped:V2eAuf5JZiaUKm3I@moviesapi.09ngu.mongo
 		})
 	})
 	.catch(error => console.error('failed to run the server'));
-
-app.use(cors());
-app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
 	res.send('hello world');
@@ -37,6 +41,7 @@ app.route('/movies')
 
 		if(object.name && object.gender && object.year){
 			movies.push(new Movie(object.name, object.gender, object.year));
+			movieService.save(object);
 			return res.status(201).json({message: "Movie Created!"});
 		}
 

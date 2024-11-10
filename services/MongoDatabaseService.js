@@ -1,4 +1,4 @@
-import mongoMovie from "../models/mongoModels/mongoMovie";
+import mongoMovie from "../models/mongoModels/mongoMovie.js";
 
 class MongoDatabaseService {
     async save(data) {
@@ -11,3 +11,5 @@ class MongoDatabaseService {
         modelInstance.save();
     }
 }
+
+export default MongoDatabaseService;

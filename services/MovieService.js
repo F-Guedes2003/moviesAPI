@@ -7,3 +7,5 @@ class MovieService {
         this.database(movie);
     }
 }
+
+export default MovieService;
