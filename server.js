@@ -3,9 +3,20 @@ import bodyParser from 'body-parser';
 import Movie from './models/Movie.js';
 import movies from './data/movies.js';
 import cors from 'cors';
+import mongoose from 'mongoose';
 
 const app = express();
 const PORT = 3000;
+
+mongoose.connect(`mongodb+srv://fhelipped:V2eAuf5JZiaUKm3I@moviesapi.09ngu.mongodb.net/?retryWrites=true&w=majority&appName=moviesAPI`)
+	.then(() => {
+		console.log('Database connected');
+		
+		app.listen(PORT, () => { 
+			console.log(`Server online and running on port ${PORT}`) 
+		})
+	})
+	.catch(error => console.error('failed to run the server'));
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -65,7 +76,3 @@ app.route('/movies/:id')
 
 		return res.status(200).json({message: "Movie succesfully updated!"});
 	})
-
-app.listen(PORT, () => {
-	console.log(`Server online running on PORT: ${PORT}`);
-})
