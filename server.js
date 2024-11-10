@@ -36,12 +36,12 @@ app.route('/movies')
 		res.json(movies);
 	})
 	
-	.post((req, res) => {
+	.post(async (req, res) => {
 		const object = req.body;
 
 		if(object.name && object.gender && object.year){
 			movies.push(new Movie(object.name, object.gender, object.year));
-			movieService.save(object);
+			await movieService.save(object);
 			return res.status(201).json({message: "Movie Created!"});
 		}
 

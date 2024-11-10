@@ -4,7 +4,7 @@ class MovieService {
     }
 
     async save(movie) {
-        this.database(movie);
+        this.database.save(movie);
     }
 }
 
