@@ -52,9 +52,10 @@ app.route('/movies')
 		if(!object.year)  return res.status(400).json({errorMessage: "There should be an year field!"});
 	})
 
-app.route('/movies/:id')
-	.get((req, res) => {
-		const movie = mongoService.find(id);
+app.route('/movies/:name')
+	.get(async (req, res) => {
+		const name = req.params.name;
+		const movie = await mongoService.find({"name": name});
 		console.log(movie);
 
 		if(movie){

@@ -11,8 +11,14 @@ class MongoDatabaseService {
         modelInstance.save();
     }
 
-    async find(id) {
-        if(id) return mongoMovie.findById(id);
+    async find({id, name, gender, year}) {
+        if(id) return mongoMovie.find({id: "id"});
+
+        if(name) return mongoMovie.find({"name": name});
+
+        if(gender) return mongoMovie.find({"gender": gender});
+
+        if(year) return mongoMovie.findOne({"year": year});
         
         return mongoMovie.find();
     }
